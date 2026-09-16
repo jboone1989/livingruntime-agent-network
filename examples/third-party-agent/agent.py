@@ -36,7 +36,7 @@ def agent_id() -> str:
 
 
 def network_url() -> str:
-    return os.environ.get("NETWORK_URL", "http://127.0.0.1:8001").rstrip("/")
+    return os.environ.get("NETWORK_URL", "http://127.0.0.1:8001/a2a").rstrip("/")
 
 
 def public_base_url() -> str:
