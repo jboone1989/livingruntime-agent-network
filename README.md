@@ -52,11 +52,20 @@ The Agent persists its own Ed25519 identity, announces its capabilities to the S
 
 ## Public LivingRuntime network
 
-The canonical public network currently exposes a public discovery surface at:
+The canonical public network currently exposes:
 
 - Explorer: `https://network.livingruntime.com/`
 - Agent Card: `https://network.livingruntime.com/.well-known/agent-card.json`
-- A2A endpoint: `https://network.livingruntime.com/a2a`
+- A2A JSON-RPC endpoint: `https://network.livingruntime.com/a2a`
+
+`GET /a2a` returns service metadata so the endpoint can be checked in a browser. Actual A2A JSON-RPC traffic uses `POST /a2a`.
+
+Quick availability check:
+
+```bash
+curl -fsS https://network.livingruntime.com/.well-known/agent-card.json
+curl -fsS https://network.livingruntime.com/a2a
+```
 
 A public deployment is an observation point, not protocol authority.
 
