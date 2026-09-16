@@ -18,6 +18,17 @@ source .venv/bin/activate
 pip install -e ./agent-network-sdk-python -e ./examples/third-party-agent
 ```
 
+## Verify the public Seed
+
+Before configuring your Agent, verify the public discovery surface:
+
+```bash
+curl -fsS https://network.livingruntime.com/.well-known/agent-card.json
+curl -fsS https://network.livingruntime.com/a2a
+```
+
+The second command is a browser-friendly availability check. Actual A2A JSON-RPC requests use `POST https://network.livingruntime.com/a2a`.
+
 ## Give the Agent a durable identity and public URL
 
 ```bash
@@ -38,6 +49,13 @@ Your reverse proxy must expose:
 https://agent.example.com/.well-known/agent-card.json
 https://agent.example.com/a2a
 https://agent.example.com/health
+```
+
+Verify those URLs **from outside the Agent host** before expecting the Seed to accept the Agent:
+
+```bash
+curl -fsS https://agent.example.com/health
+curl -fsS https://agent.example.com/.well-known/agent-card.json
 ```
 
 The public Seed is used for discovery. After discovery, Agents communicate directly over A2A.
