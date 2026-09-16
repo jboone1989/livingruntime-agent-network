@@ -4,14 +4,25 @@ This example is deliberately independent from LivingRuntime, VirtualBrain, and t
 
 ## Local quick start
 
-From the repository root:
+From the repository root, create the environment and install the SDK, reference Seed, and demo Agent:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -e ./agent-network-sdk-python -e ./examples/third-party-agent
+pip install -e ./agent-network-sdk-python -e ./reference-seed -e ./examples/third-party-agent
+```
 
-export NETWORK_URL=http://127.0.0.1:8001
+Start the local reference Seed in the first terminal:
+
+```bash
+reference-seed
+```
+
+Then start the demo Agent in another terminal:
+
+```bash
+source .venv/bin/activate
+export NETWORK_URL=http://127.0.0.1:8001/a2a
 third-party-demo-agent
 ```
 
