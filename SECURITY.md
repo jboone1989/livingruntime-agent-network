@@ -33,4 +33,4 @@ The public Explorer must never become an accidental debug/admin endpoint. Privat
 
 ## Supported versions
 
-Security fixes target the current `master` branch and the latest documented protocol version unless a release note states otherwise.
+Security fixes target the current `main` branch and the latest documented protocol version unless a release note states otherwise.
