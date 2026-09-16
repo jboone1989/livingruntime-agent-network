@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/verification-receipt.schema.json",
+  "title": "VerificationReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verification_id",
+    "task_id",
+    "artifact_id",
+    "artifact_hash",
+    "verifier",
+    "result",
+    "timestamp",
+    "signature",
+    "contract_id",
+    "contract_hash",
+    "verifier_key_id",
+    "verification_policy_hash",
+    "artifact_manifest_hash"
+  ],
+  "properties": {
+    "verification_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "artifact_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "verifier": { "type": "string" },
+    "result": { "type": "string", "enum": ["PASS", "FAIL", "PARTIAL"] },
+    "checks": { "type": "object" },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string", "pattern": "^ed25519:" },
+    "schema_version": { "type": "string" },
+    "contract_id": { "type": "string" },
+    "contract_hash": { "type": "string" },
+    "artifact_manifest_hash": { "type": "string" },
+    "verifier_key_id": { "type": "string" },
+    "verification_policy_hash": { "type": "string" },
+    "verification_method": { "type": "string" },
+    "evidence_hashes": { "type": "array", "items": { "type": "string" } }
+  }
+}

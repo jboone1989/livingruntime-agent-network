@@ -1,0 +1,19 @@
+[project]
+name = "third-party-demo-agent"
+version = "0.2.0"
+description = "Example Agent that only depends on agent-network-sdk."
+requires-python = ">=3.11"
+dependencies = [
+  "agent-network-sdk",
+  "uvicorn>=0.27",
+]
+
+[project.scripts]
+third-party-demo-agent = "agent:run"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["agent"]

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/identity-recovery.schema.json",
+  "title": "IdentityKeyRecover",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "agent_id",
+    "old_identity_epoch",
+    "new_identity_epoch",
+    "revoked_keys",
+    "new_operational_key",
+    "timestamp",
+    "recovery_signatures"
+  ],
+  "properties": {
+    "type": { "type": "string", "const": "identity.key.recover" },
+    "agent_id": { "type": "string" },
+    "old_identity_epoch": { "type": "integer" },
+    "new_identity_epoch": { "type": "integer" },
+    "revoked_keys": { "type": "array", "items": { "type": "string" } },
+    "new_operational_key": {
+      "type": "object",
+      "required": ["key_id", "public_key"],
+      "properties": {
+        "key_id": { "type": "string" },
+        "public_key": { "type": "string" }
+      }
+    },
+    "timestamp": { "type": "string" },
+    "recovery_signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key_id", "signature"],
+        "properties": {
+          "key_id": { "type": "string" },
+          "signature": { "type": "string" }
+        }
+      }
+    },
+    "recovery_policy_hash": { "type": "string" }
+  }
+}

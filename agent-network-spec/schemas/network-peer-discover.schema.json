@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetworkPeerDiscover",
+  "type": "object",
+  "required": [
+    "type",
+    "query_id",
+    "origin_network",
+    "criteria",
+    "visited_networks",
+    "hop_limit",
+    "timestamp",
+    "signature"
+  ],
+  "properties": {
+    "type": { "const": "network.peer.discover" },
+    "query_id": { "type": "string" },
+    "origin_network": { "type": "string" },
+    "requester_agent_id": { "type": "string" },
+    "criteria": { "type": "object" },
+    "visited_networks": { "type": "array", "items": { "type": "string" } },
+    "hop_limit": { "type": "integer" },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentIdentity",
+  "type": "object",
+  "required": ["agent_id", "key_id", "public_key", "revision"],
+  "properties": {
+    "agent_id": { "type": "string" },
+    "key_id": { "type": "string" },
+    "public_key": { "type": "string" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "created_at": { "type": "string" },
+    "recovery": {
+      "type": "object",
+      "properties": {
+        "threshold": { "type": "integer", "minimum": 1 },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["key_id", "public_key"],
+            "properties": {
+              "key_id": { "type": "string" },
+              "public_key": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

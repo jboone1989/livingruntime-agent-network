@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IdentityEnrollment",
+  "type": "object",
+  "required": ["type", "agent_id", "key_id", "public_key", "identity_epoch", "agent_card_hash", "recovery_policy_hash", "created_at", "signature"],
+  "properties": {
+    "type": { "const": "identity.enrollment" },
+    "agent_id": { "type": "string" },
+    "key_id": { "type": "string" },
+    "public_key": { "type": "string" },
+    "identity_epoch": { "type": "integer", "const": 1 },
+    "agent_card_hash": { "type": "string" },
+    "recovery_policy_hash": { "type": "string" },
+    "created_at": { "type": "string" },
+    "recovery_keys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key_id", "public_key"],
+        "properties": {
+          "key_id": { "type": "string" },
+          "public_key": { "type": "string" }
+        }
+      }
+    },
+    "signature": { "type": "string" }
+  }
+}

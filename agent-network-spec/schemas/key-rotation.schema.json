@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyRotation",
+  "type": "object",
+  "required": ["type", "agent_id", "old_key_id", "new_key", "timestamp", "signature_by_old_key"],
+  "properties": {
+    "type": { "const": "identity.key.rotate" },
+    "agent_id": { "type": "string" },
+    "old_key_id": { "type": "string" },
+    "new_key": {
+      "type": "object",
+      "required": ["key_id", "public_key"],
+      "properties": {
+        "key_id": { "type": "string" },
+        "public_key": { "type": "string" }
+      }
+    },
+    "timestamp": { "type": "string" },
+    "signature_by_old_key": { "type": "string" }
+  }
+}

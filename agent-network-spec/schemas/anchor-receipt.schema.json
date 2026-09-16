@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/anchor-receipt.schema.json",
+  "title": "AnchorReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "batch_id",
+    "epoch",
+    "merkle_root",
+    "anchored_at",
+    "provider",
+    "signature"
+  ],
+  "properties": {
+    "type": { "type": "string", "const": "anchor.receipt" },
+    "batch_id": { "type": "string" },
+    "network_id": { "type": "string" },
+    "epoch": { "type": "integer" },
+    "merkle_root": { "type": "string" },
+    "provider": { "type": "string", "enum": ["local", "peer-witness", "blockchain"] },
+    "anchored_at": { "type": "string" },
+    "anchor_seed_agent_id": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/task-public-state.schema.json",
+  "title": "TaskPublicState",
+  "type": "object",
+  "required": ["task_id", "status", "updated_at"],
+  "properties": {
+    "task_id": { "type": "string" },
+    "contract_id": { "type": ["string", "null"] },
+    "status": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "metadata": { "type": "object" }
+  }
+}

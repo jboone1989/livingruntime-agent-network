@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/witness-receipt.schema.json",
+  "title": "WitnessReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "origin_network_id",
+    "batch_id",
+    "epoch",
+    "merkle_root",
+    "witness_network_id",
+    "witness_seed_agent_id",
+    "observed_at",
+    "signature"
+  ],
+  "properties": {
+    "type": { "type": "string", "const": "anchor.witness.receipt" },
+    "origin_network_id": { "type": "string" },
+    "batch_id": { "type": "string" },
+    "epoch": { "type": "integer" },
+    "merkle_root": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "witness_network_id": { "type": "string" },
+    "witness_seed_agent_id": { "type": "string" },
+    "observed_at": { "type": "string" },
+    "signature": { "type": "string", "pattern": "^ed25519:" }
+  }
+}

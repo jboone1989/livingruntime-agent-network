@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetworkPeer",
+  "type": "object",
+  "required": ["type", "network_id", "seed_agent_id", "key_id", "agent_card_url", "public_key", "timestamp", "signature"],
+  "properties": {
+    "type": { "const": "network.peer" },
+    "network_id": { "type": "string" },
+    "seed_agent_id": { "type": "string" },
+    "key_id": { "type": "string" },
+    "agent_card_url": { "type": "string" },
+    "endpoint": { "type": "string" },
+    "public_key": { "type": "string" },
+    "capability_namespaces": { "type": "array", "items": { "type": "string" } },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskAcceptance",
+  "type": "object",
+  "required": [
+    "contract_id",
+    "requester_agent_id",
+    "requester_key_id",
+    "result",
+    "signature",
+    "contract_hash",
+    "artifact_id",
+    "artifact_manifest_hash"
+  ],
+  "properties": {
+    "contract_id": { "type": "string" },
+    "artifact_id": { "type": "string" },
+    "artifact_manifest_hash": { "type": "string" },
+    "verification_id": { "type": "string" },
+    "requester_agent_id": { "type": "string" },
+    "result": { "type": "string", "enum": ["ACCEPTED", "REJECTED"] },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string" },
+    "schema_version": { "type": "string" },
+    "requester_key_id": { "type": "string" },
+    "contract_hash": { "type": "string" }
+  }
+}

@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: Agent Network Seed (retired REST registry)
+  version: 0.1.0
+  description: |
+    The central REST registry (`/v1/agents`, `/v1/contracts`, `/v1/artifacts`,
+    `/v1/verifications`) is retired. `agent-network-server` is gone.
+
+    A Network is a Seed Agent. Ordinary Agents send A2A `message/send` to a Seed
+    they already know. Seeds do not relay business tasks.
+
+    Public history skills on the Seed:
+
+      network.receipt.contract
+      network.receipt.artifact
+      network.receipt.verification
+      network.receipt.acceptance
+
+    Join / discovery / federation skills:
+
+      network.join / network.renew / network.discover
+      network.peer / network.peer.discover
+      network.report_unreachable
+      network.key.rotate / network.key.revoke
+servers:
+  - url: http://127.0.0.1:8001
+paths:
+  /health:
+    get:
+      summary: Seed liveness
+      responses:
+        "200":
+          description: OK
+  /a2a:
+    post:
+      summary: A2A JSON-RPC message/send (join, discover, receipts)
+      responses:
+        "200":
+          description: JSON-RPC result
+  /.well-known/agent-card.json:
+    get:
+      summary: Signed Seed Agent Card (A2A 1.0 supportedInterfaces)
+      responses:
+        "200":
+          description: Agent Card

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/task-contract.schema.json",
+  "title": "TaskContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "requester",
+    "executor",
+    "capability",
+    "objective",
+    "constraints",
+    "deliverables",
+    "verification",
+    "created_at",
+    "status",
+    "schema_version",
+    "canonicalization",
+    "signature_suite",
+    "requester_key_id",
+    "executor_key_id",
+    "requester_signature",
+    "executor_signature",
+    "verification_policy_hash"
+  ],
+  "properties": {
+    "contract_id": { "type": "string", "minLength": 1 },
+    "requester": { "type": "string", "minLength": 1 },
+    "executor": { "type": "string", "minLength": 1 },
+    "capability": { "type": "string", "minLength": 1 },
+    "objective": { "type": "string", "minLength": 1 },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "deliverables": { "type": "array", "items": { "type": "string" } },
+    "verification": {
+      "type": "object",
+      "required": ["required"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "policy": {
+          "type": "string",
+          "enum": [
+            "REQUESTER_SELECTS",
+            "MUTUAL_SELECTION",
+            "NETWORK_RANDOM",
+            "MULTI_VERIFIER",
+            "REPUTATION_WEIGHTED"
+          ]
+        },
+        "verifier_agent_id": { "type": "string" },
+        "verifiers": { "type": "array", "items": { "type": "string" } },
+        "required_passes": { "type": "integer", "minimum": 1 },
+        "capability": { "type": "string" },
+        "acceptance": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "created_at": { "type": "string" },
+    "expires_at": { "type": ["string", "null"] },
+    "status": { "const": "SIGNED" },
+    "economic_terms": { "type": ["object", "null"] },
+    "metadata": { "type": "object" },
+    "proposal_id": { "type": "string" },
+    "proposal_revision": { "type": "integer", "minimum": 1 },
+    "proposal_hash": { "type": "string" },
+    "side_effects": { "type": "string", "enum": ["NONE", "REVERSIBLE", "IRREVERSIBLE"] },
+    "requester_signature": { "type": "string" },
+    "executor_signature": { "type": ["string", "null"] },
+    "schema_version": { "type": "string" },
+    "canonicalization": { "type": "string" },
+    "signature_suite": { "type": "string" },
+    "requester_key_id": { "type": "string" },
+    "executor_key_id": { "type": "string" },
+    "verification_policy_hash": { "type": "string" },
+    "contract_hash": { "type": "string" }
+  }
+}

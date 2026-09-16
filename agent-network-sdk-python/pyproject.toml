@@ -1,0 +1,27 @@
+[project]
+name = "agent-network-sdk"
+version = "0.2.0"
+description = "Join a federated Agent Network: official A2A 1.0 transport plus Seed announce/discover/evidence."
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["a2a", "agent-network", "json-rpc"]
+dependencies = [
+  "cryptography>=42.0.0",
+  "httpx>=0.27.0",
+  "starlette>=0.37.0",
+  "a2a-sdk[http-server]>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

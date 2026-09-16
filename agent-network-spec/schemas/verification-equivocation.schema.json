@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/verification-equivocation.schema.json",
+  "title": "VerifierEquivocation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "observer_seed_id",
+    "observer_key_id",
+    "verifier",
+    "contract_hash",
+    "artifact_manifest_hash",
+    "first_receipt_hash",
+    "first_result",
+    "conflicting_result",
+    "timestamp",
+    "signature"
+  ],
+  "properties": {
+    "observer_seed_id": { "type": "string" },
+    "observer_key_id": { "type": "string" },
+    "verifier": { "type": "string" },
+    "contract_id": { "type": "string" },
+    "contract_hash": { "type": "string" },
+    "artifact_manifest_hash": { "type": "string" },
+    "first_receipt_hash": { "type": "string" },
+    "first_result": { "type": "string", "enum": ["PASS", "FAIL", "PARTIAL"] },
+    "conflicting_result": { "type": "string", "enum": ["PASS", "FAIL", "PARTIAL"] },
+    "conflicting_receipt_hash": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string", "pattern": "^ed25519:" }
+  }
+}

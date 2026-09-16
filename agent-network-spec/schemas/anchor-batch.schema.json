@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/anchor-batch.schema.json",
+  "title": "AnchorBatch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "batch_id",
+    "network_id",
+    "epoch",
+    "first_seq",
+    "last_seq",
+    "leaf_count",
+    "merkle_algorithm",
+    "merkle_root",
+    "created_at",
+    "origin_seed_agent_id",
+    "origin_seed_key_id",
+    "signature"
+  ],
+  "properties": {
+    "batch_id": { "type": "string" },
+    "network_id": { "type": "string" },
+    "epoch": { "type": "integer", "minimum": 1 },
+    "first_seq": { "type": "integer", "minimum": 1 },
+    "last_seq": { "type": "integer", "minimum": 1 },
+    "leaf_count": { "type": "integer", "minimum": 1 },
+    "merkle_algorithm": { "type": "string", "const": "merkle-sha256-v1" },
+    "merkle_root": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "created_at": { "type": "string" },
+    "origin_seed_agent_id": { "type": "string" },
+    "origin_seed_key_id": { "type": "string" },
+    "leaf_hashes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "signature": { "type": "string", "pattern": "^ed25519:" }
+  }
+}

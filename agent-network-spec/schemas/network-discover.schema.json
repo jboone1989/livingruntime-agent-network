@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetworkDiscover",
+  "type": "object",
+  "required": ["type", "query_id", "requester_agent_id", "criteria", "timestamp", "signature"],
+  "properties": {
+    "type": { "const": "network.discover" },
+    "query_id": { "type": "string" },
+    "requester_agent_id": { "type": "string" },
+    "criteria": {
+      "type": "object",
+      "required": ["capability"],
+      "properties": {
+        "capability": { "type": "string" },
+        "version": { "type": "string" },
+        "include_reputation": { "type": "boolean" },
+        "reputation_capability": { "type": "string" },
+        "availability": { "type": "string" }
+      }
+    },
+    "max_results": { "type": "integer", "minimum": 1 },
+    "allow_federated": { "type": "boolean" },
+    "hop_limit": { "type": "integer", "minimum": 0 },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

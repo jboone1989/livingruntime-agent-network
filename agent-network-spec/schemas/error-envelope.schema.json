@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ErrorEnvelope",
+  "type": "object",
+  "required": ["code", "message", "retryable"],
+  "properties": {
+    "code": { "type": "string" },
+    "message": { "type": "string" },
+    "retryable": { "type": "boolean" },
+    "retry_after_ms": { "type": ["integer", "null"] },
+    "details": { "type": "object" }
+  }
+}

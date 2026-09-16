@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NetworkAnnounce",
+  "type": "object",
+  "required": [
+    "type",
+    "protocol_version",
+    "agent_id",
+    "public_key",
+    "agent_card_url",
+    "endpoint",
+    "capabilities",
+    "timestamp",
+    "nonce",
+    "signature"
+  ],
+  "properties": {
+    "type": { "const": "network.announce" },
+    "protocol_version": { "type": "string" },
+    "agent_id": { "type": "string" },
+    "public_key": { "type": "string" },
+    "key_id": { "type": "string" },
+    "agent_card_url": { "type": "string" },
+    "endpoint": { "type": "string" },
+    "interfaces": { "type": "array", "items": { "type": "object" } },
+    "capabilities": { "type": "array" },
+    "availability": {
+      "type": "object",
+      "properties": {
+        "accept_new_tasks": { "type": "boolean" },
+        "status": { "type": "string" }
+      }
+    },
+    "requested_lease_seconds": { "type": "integer", "minimum": 60 },
+    "timestamp": { "type": "string" },
+    "nonce": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

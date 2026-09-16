@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agent-network.local/schemas/task-lifecycle-event.schema.json",
+  "title": "TaskLifecycleEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "contract_id",
+    "contract_hash",
+    "previous_event_hash",
+    "status",
+    "actor_agent_id",
+    "actor_key_id",
+    "timestamp",
+    "signature"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "canonicalization": { "type": "string" },
+    "signature_suite": { "type": "string" },
+    "event_id": { "type": "string" },
+    "contract_id": { "type": "string" },
+    "contract_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "previous_event_hash": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+    "status": {
+      "type": "string",
+      "enum": ["EXECUTING", "DELIVERED", "VERIFYING", "FAILED", "CANCELED", "DISPUTED"]
+    },
+    "actor_agent_id": { "type": "string" },
+    "actor_key_id": { "type": "string" },
+    "artifact_hashes": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+    },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string", "pattern": "^ed25519:" }
+  }
+}

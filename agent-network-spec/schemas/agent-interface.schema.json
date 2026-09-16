@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentInterface",
+  "type": "object",
+  "required": ["protocol", "endpoint"],
+  "properties": {
+    "type": { "type": "string", "enum": ["DIRECT", "RELAY", "REVERSE", "TUNNEL"] },
+    "protocol": { "type": "string" },
+    "version": { "type": "string" },
+    "transport": { "type": "string" },
+    "endpoint": { "type": "string" }
+  }
+}

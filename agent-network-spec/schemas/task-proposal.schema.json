@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TaskProposal",
+  "type": "object",
+  "required": ["proposal_id", "revision", "requester", "target", "capability", "objective"],
+  "properties": {
+    "proposal_id": { "type": "string" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "requester": { "type": "string" },
+    "target": { "type": "string" },
+    "capability": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "objective": { "type": "string" },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "deliverables": { "type": "array", "items": { "type": "string" } },
+    "verification": { "type": "object" },
+    "side_effects": { "type": "string", "enum": ["NONE", "REVERSIBLE", "IRREVERSIBLE"] },
+    "expires_at": { "type": "string" },
+    "idempotency_key": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}

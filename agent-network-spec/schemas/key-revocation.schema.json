@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "KeyRevocation",
+  "type": "object",
+  "required": ["type", "agent_id", "key_id", "timestamp", "signature"],
+  "properties": {
+    "type": { "const": "identity.key.revoke" },
+    "agent_id": { "type": "string" },
+    "key_id": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}
