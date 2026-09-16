@@ -1,5 +1,7 @@
 name: ci
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,5 +11,5 @@ jobs:
         with:
           python-version: "3.11"
       - run: python -m pip install -U pip
-      - run: pip install -e ./agent-network-sdk-python[dev] -e ./reference-seed[dev]
-      - run: pytest -q agent-network-sdk-python/tests reference-seed/tests
+      - run: pip install -e ./agent-network-sdk-python[dev] -e ./reference-seed[dev] -e ./examples/third-party-agent
+      - run: pytest -q agent-network-sdk-python/tests reference-seed/tests examples/third-party-agent/tests
