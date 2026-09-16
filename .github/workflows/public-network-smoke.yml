@@ -1,0 +1,60 @@
+name: public-network-smoke
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify public Explorer, Agent Card, and A2A
+        run: |
+          python - <<'PY'
+          import json
+          import urllib.request
+
+          BASE = "https://network.livingruntime.com"
+
+          def get(path):
+              with urllib.request.urlopen(BASE + path, timeout=20) as response:
+                  assert response.status == 200, (path, response.status)
+                  return response.read()
+
+          explorer = get("/").decode("utf-8")
+          assert "LivingRuntime Agent Network" in explorer
+
+          card = json.loads(get("/.well-known/agent-card.json"))
+          interfaces = card.get("supportedInterfaces") or []
+          assert any(i.get("url") == BASE + "/a2a" for i in interfaces)
+          assert card.get("agent_id") and card.get("public_key") and card.get("signature")
+
+          metadata = json.loads(get("/a2a"))
+          assert metadata.get("method") == "POST"
+          assert metadata.get("agent_card") == BASE + "/.well-known/agent-card.json"
+
+          body = json.dumps({
+              "jsonrpc": "2.0",
+              "id": "public-smoke",
+              "method": "NoSuchMethod",
+              "params": {},
+          }).encode("utf-8")
+          request = urllib.request.Request(
+              BASE + "/a2a",
+              data=body,
+              headers={"Content-Type": "application/json"},
+              method="POST",
+          )
+          with urllib.request.urlopen(request, timeout=20) as response:
+              assert response.status == 200
+              result = json.loads(response.read())
+          assert result.get("error", {}).get("code") == -32601
+          print("public network smoke: PASS")
+          PY
